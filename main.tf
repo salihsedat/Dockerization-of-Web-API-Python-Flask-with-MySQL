@@ -19,7 +19,7 @@ provider "aws" {
 }
 
 provider "github" {
-    token = "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"
+    token = "xxx"
   
 }
 
@@ -52,10 +52,10 @@ resource "github_repository_file" "myfiles" {
 resource "aws_instance" "tf-docker-ec2" {
     ami = "ami-0f9fc25dd2506cf6d"
     instance_type = "t2.micro"
-    key_name = "davidskey"
-    security_groups = ["david-docker-sec-gr-203"] # !!!!!!!!!!!!
+    key_name = "key"
+    security_groups = ["docker-sec-gr"] # !!!!!!!!!!!!
     tags = {
-        Name = "david-Web Server of Bookstore"
+        Name = "Server of Bookstore"
     }
     user_data = <<-EOF
           #! /bin/bash
@@ -69,8 +69,8 @@ resource "aws_instance" "tf-docker-ec2" {
           chmod +x /usr/local/bin/docker-compose  
           mkdir -p /home/ec2-user/bookstore-api
           cd /home/ec2-user/bookstore-api          
-          TOKEN="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"
-          FOLDER="https://$TOKEN@raw.githubusercontent.com/davidclarusway/bookstore-repo/main/"
+          TOKEN="xxxx"
+          FOLDER="https://$TOKEN@raw.githubusercontent.com/xxx/bookstore-repo/main/"
           curl -s -o bookstore-api.py -L "$FOLDER"bookstore-api.py 
           curl -s -o Dockerfile -L "$FOLDER"Dockerfile 
           curl -s -o docker-compose.yml -L "$FOLDER"docker-compose.yml 
